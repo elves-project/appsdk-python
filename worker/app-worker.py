@@ -8,6 +8,7 @@ import sys
 import json
 import base64
 import os
+import traceback
 sys.path.append(os.path.abspath(__file__))
 
 def agentExec(app,func,jsonParam=""):
@@ -24,7 +25,7 @@ def agentExec(app,func,jsonParam=""):
         mtd = getattr(obj,func)
         flag,result = mtd(param)
     except Exception,e:
-        flag,result = "false",e
+        flag,result = "false",traceback.format_exc()
     elvesPrint(flag,result)
     
 def elvesPrint(flag,result):
